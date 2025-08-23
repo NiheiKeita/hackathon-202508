@@ -1,0 +1,226 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 14px;
+  /* KODAMA Brand Colors - アイコンに基づいた配色 */
+  --kodama-teal: #5f9ea0;
+  --kodama-teal-dark: #4682b4;
+  --kodama-teal-light: #87ceeb;
+  --kodama-cream: #f5f5dc;
+  --kodama-cream-dark: #f0e68c;
+  --kodama-rain: #b0e0e6;
+  --kodama-forest: #2e8b57;
+  --kodama-spirit: #fffaf0;
+  
+  --background: var(--kodama-spirit);
+  --foreground: #2c3e50;
+  --card: #ffffff;
+  --card-foreground: #2c3e50;
+  --popover: #ffffff;
+  --popover-foreground: #2c3e50;
+  --primary: var(--kodama-teal);
+  --primary-foreground: #ffffff;
+  --secondary: var(--kodama-cream);
+  --secondary-foreground: #2c3e50;
+  --muted: var(--kodama-rain);
+  --muted-foreground: #4a5568;
+  --accent: var(--kodama-teal-light);
+  --accent-foreground: #2c3e50;
+  --destructive: #e53e3e;
+  --destructive-foreground: #ffffff;
+  --border: rgba(95, 158, 160, 0.2);
+  --input: transparent;
+  --input-background: rgba(255, 255, 255, 0.8);
+  --switch-background: #cbd5e0;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: var(--kodama-teal);
+  --chart-1: var(--kodama-teal);
+  --chart-2: var(--kodama-forest);
+  --chart-3: var(--kodama-cream-dark);
+  --chart-4: var(--kodama-rain);
+  --chart-5: var(--kodama-teal-light);
+  --radius: 1rem;
+  --sidebar: var(--kodama-spirit);
+  --sidebar-foreground: #2c3e50;
+  --sidebar-primary: var(--kodama-teal);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--kodama-cream);
+  --sidebar-accent-foreground: #2c3e50;
+  --sidebar-border: rgba(95, 158, 160, 0.1);
+  --sidebar-ring: var(--kodama-teal);
+}
+
+.dark {
+  --background: #1a202c;
+  --foreground: var(--kodama-spirit);
+  --card: #2d3748;
+  --card-foreground: var(--kodama-spirit);
+  --popover: #2d3748;
+  --popover-foreground: var(--kodama-spirit);
+  --primary: var(--kodama-teal-light);
+  --primary-foreground: #1a202c;
+  --secondary: #4a5568;
+  --secondary-foreground: var(--kodama-spirit);
+  --muted: #4a5568;
+  --muted-foreground: #a0aec0;
+  --accent: #4a5568;
+  --accent-foreground: var(--kodama-spirit);
+  --destructive: #fc8181;
+  --destructive-foreground: #1a202c;
+  --border: #4a5568;
+  --input: #4a5568;
+  --ring: var(--kodama-teal-light);
+  --sidebar: #2d3748;
+  --sidebar-foreground: var(--kodama-spirit);
+  --sidebar-primary: var(--kodama-teal-light);
+  --sidebar-primary-foreground: #1a202c;
+  --sidebar-accent: #4a5568;
+  --sidebar-accent-foreground: var(--kodama-spirit);
+  --sidebar-border: #4a5568;
+  --sidebar-ring: var(--kodama-teal-light);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* KODAMA Custom Colors */
+  --color-kodama-teal: var(--kodama-teal);
+  --color-kodama-teal-dark: var(--kodama-teal-dark);
+  --color-kodama-teal-light: var(--kodama-teal-light);
+  --color-kodama-cream: var(--kodama-cream);
+  --color-kodama-cream-dark: var(--kodama-cream-dark);
+  --color-kodama-rain: var(--kodama-rain);
+  --color-kodama-forest: var(--kodama-forest);
+  --color-kodama-spirit: var(--kodama-spirit);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Hiragino Sans', 'Yu Gothic UI', 'Meiryo UI', sans-serif;
+  }
+  
+  /* Kodama themed animations */
+  @keyframes rain-drop {
+    0% { transform: translateY(-10px) rotate(15deg); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(10px) rotate(15deg); opacity: 0; }
+  }
+  
+  @keyframes spirit-glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(95, 158, 160, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(95, 158, 160, 0.6); }
+  }
+  
+  .rain-animation {
+    animation: rain-drop 2s infinite;
+  }
+  
+  .spirit-glow {
+    animation: spirit-glow 3s ease-in-out infinite;
+  }
+}
+
+/**
+ * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
+ */
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      color: var(--kodama-teal-dark);
+    }
+
+    h2 {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      color: var(--kodama-teal);
+    }
+
+    h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      color: var(--kodama-teal);
+    }
+
+    h4 {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    p {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.6;
+    }
+
+    label {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    button {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    input {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}

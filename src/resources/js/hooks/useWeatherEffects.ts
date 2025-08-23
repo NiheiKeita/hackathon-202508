@@ -17,7 +17,7 @@ export const useWeatherEffects = () => {
         applyWeatherEffects: audioEngineApplyEffects
     } = useAudioEngine()
 
-    // 天候データから音楽パラメータを計算
+    // 天候データから音楽パラメータを計算（サンプルアプリのパターンに準拠）
     const calculateMusicParameters = useCallback((weather: WeatherData) => {
         const baseParams = {
             bpm: 120,
@@ -26,26 +26,62 @@ export const useWeatherEffects = () => {
             isMinor: false,
         }
 
-        // 雨の影響: テンポを変化（激しい雨ほど早く）
-        const tempoBpm = Math.round(baseParams.bpm * weather.tempo_multiplier)
+        // 降水量に基づくテンポ計算（サンプルアプリと同じロジック）
+        let tempoBpm = baseParams.bpm
+        if (weather.weather_condition.includes('雨')) {
+            const rainfall = parseFloat(weather.weather_condition.match(/(\d+\.?\d*)mm/)?.[1] || '0')
+            if (rainfall < 1) {
+                tempoBpm = Math.round(baseParams.bpm * 0.8) // Andante
+            } else if (rainfall < 5) {
+                tempoBpm = baseParams.bpm // Moderato
+            } else if (rainfall < 10) {
+                tempoBpm = Math.round(baseParams.bpm * 1.2) // Allegro
+            } else {
+                tempoBpm = Math.round(baseParams.bpm * 1.5) // Presto
+            }
+        } else {
+            // 基本テンポ乗数を適用
+            tempoBpm = Math.round(baseParams.bpm * weather.tempo_multiplier)
+        }
 
         // 風の影響: リバーブレベル（風が強いほどエコー効果）
-        const reverbLevel = Math.min(1.0, weather.reverb_level * 1.2)
+        let reverbLevel = baseParams.reverb
+        if (weather.weather_condition.includes('風')) {
+            reverbLevel = Math.min(1.0, weather.reverb_level * 1.5)
+        } else {
+            reverbLevel = Math.min(1.0, weather.reverb_level * 1.2)
+        }
 
-        // 気温の影響: 調性決定（寒いほど短調傾向）
+        // 気温と季節の影響: 調性決定
         const isMinor = !weather.is_major_key
 
-        // 湿度の影響: 音量調整（湿度が高いと音が籠る）
-        const humidity = weather.weather_condition.includes('雨') || weather.weather_condition.includes('霧') ? 0.8 : 1.0
-        const volumeAdjustment = Math.round(baseParams.volume * humidity)
+        // 特殊天候効果による音量調整
+        let volumeAdjustment = baseParams.volume
+        if (weather.weather_condition.includes('雨') || weather.weather_condition.includes('霧')) {
+            volumeAdjustment = Math.round(baseParams.volume * 0.85) // 湿度で音が籠る
+        } else if (weather.weather_condition.includes('雪')) {
+            volumeAdjustment = Math.round(baseParams.volume * 0.9) // 雪で音が柔らかく
+        } else if (weather.weather_condition.includes('雷')) {
+            volumeAdjustment = Math.round(baseParams.volume * 1.1) // 雷で迫力アップ
+        }
 
         return {
             bpm: tempoBpm,
             volume: volumeAdjustment,
             reverb: reverbLevel,
             isMinor,
-            weather
+            weather,
+            // サンプルアプリのテンポ名称を追加
+            tempoName: getTempoName(tempoBpm)
         }
+    }, [])
+
+    // テンポ名称を取得（サンプルアプリと同じロジック）
+    const getTempoName = useCallback((bpm: number): string => {
+        if (bpm < 100) return 'Andante'
+        if (bpm < 130) return 'Moderato'  
+        if (bpm < 150) return 'Allegro'
+        return 'Presto'
     }, [])
 
     // 天候効果の段階的適用
@@ -225,5 +261,6 @@ export const useWeatherEffects = () => {
         calculateMusicParameters,
         getWeatherEffectDescription,
         getWeatherTransitionClass,
+        getTempoName,
     }
 }
