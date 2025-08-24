@@ -123,7 +123,7 @@ export const Footer: React.FC = () => {
             </div>
 
             {/* 装飾的な背景要素 */}
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-20"></div>
+            {/* <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-20"></div> */}
         </footer>
     )
 }

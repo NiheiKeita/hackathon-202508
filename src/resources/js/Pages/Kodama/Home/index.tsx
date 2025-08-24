@@ -37,26 +37,26 @@ const KodamaHome: React.FC = () => {
             />
 
             {/* ヒーローセクション */}
-            <section className="relative overflow-hidden bg-gradient-to-br from-teal-100/60 via-slate-100/50 to-stone-100/70 py-20">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(45,212,191,0.1),transparent_70%)]"></div>
+            <section className="relative overflow-hidden bg-gradient-to-br from-teal-100/60 via-slate-100/50 to-stone-100/70">
+                {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(45,212,191,0.1),transparent_70%)]"></div> */}
                 {/* 雨の演出 */}
-                <div className="absolute inset-0 opacity-20">
+                {/* <div className="absolute inset-0 opacity-20">
                     <div className="absolute h-1 w-1 animate-bounce bg-teal-300" style={{ left: '10%', top: '20%', animationDelay: '0s' }}></div>
                     <div className="absolute h-1 w-1 animate-bounce bg-teal-300" style={{ left: '20%', top: '40%', animationDelay: '0.2s' }}></div>
                     <div className="absolute h-1 w-1 animate-bounce bg-teal-300" style={{ left: '30%', top: '10%', animationDelay: '0.4s' }}></div>
                     <div className="absolute h-1 w-1 animate-bounce bg-teal-300" style={{ left: '60%', top: '30%', animationDelay: '0.6s' }}></div>
                     <div className="absolute h-1 w-1 animate-bounce bg-teal-300" style={{ left: '70%', top: '50%', animationDelay: '0.8s' }}></div>
                     <div className="absolute h-1 w-1 animate-bounce bg-teal-300" style={{ left: '80%', top: '15%', animationDelay: '1s' }}></div>
-                </div>
-                <div className="container relative mx-auto px-4 text-center">
-                    <div className="mb-8 flex justify-center">
-                        <div className="h-48 w-48">
+                </div> */}
+                <div className="relative text-center">
+                    <div className="flex justify-center">
+                        <div className="w-full">
                             {/* <div className="relative h-12 w-12 flex items-center justify-center">
                 <div className="absolute h-10 w-8 bg-stone-100 rounded-full"></div>
                 <div className="absolute h-2 w-2 bg-slate-800 rounded-full" style={{top: '16px', left: '18px'}}></div>
                 <div className="absolute h-2 w-2 bg-slate-800 rounded-full" style={{top: '16px', right: '18px'}}></div>
               </div> */}
-                            <img className='h-full w-full' src="/images/icon.png" />
+                            <img className='h-full w-full' src="/images/top.png" />
                             {/* <div className="h-10 w-10 overflow-hidden rounded-xl transition-transform group-hover:scale-105">
                                 <img className='h-full w-full' src="/images/icon.png" />
                             </div> */}
@@ -67,7 +67,7 @@ const KodamaHome: React.FC = () => {
                         KODAMA
                     </h1> */}
 
-                    <p className="mb-2 text-2xl font-medium text-teal-700">
+                    <p className="mb-2 mt-12 text-2xl font-medium text-teal-700">
                         - 雨で生まれる世界で唯一のオーケストラ -
                     </p>
 
@@ -89,7 +89,7 @@ const KodamaHome: React.FC = () => {
                 </div>
 
                 {/* 背景の装飾的エフェクト */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 via-slate-400 to-teal-500 opacity-30"></div>
+                {/* <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 via-slate-400 to-teal-500 opacity-30"></div> */}
             </section>
 
             <main className="container mx-auto px-4 py-8">
