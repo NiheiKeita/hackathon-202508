@@ -78,14 +78,93 @@ class KodamaController extends Controller
 
     public function shop()
     {
-        $soundPacks = [
-            'japanese' => SoundSource::where('category', 'japanese')->get(),
-            '80s_synth' => SoundSource::where('category', '80s_synth')->get(),
-        ];
+        // 公園と天候データを取得
+        $parks = Park::with(['weatherData' => function ($query) {
+            $query->latest('recorded_at')->limit(1);
+        }])->get();
+
+        // 各公園の天候・気温に応じたQRコードを生成
+        $availableQrCodes = [];
+        
+        foreach ($parks as $park) {
+            $weather = $park->weatherData->first();
+            $qrCodes = [];
+
+            // 各音源の天候・温度条件を設定
+            $soundSources = SoundSource::where('is_free', false)->get();
+            
+            foreach ($soundSources as $source) {
+                $weatherCondition = $this->getWeatherConditionForSound($source->category);
+                $temperatureRange = $this->getTemperatureRangeForSound($source->category);
+                
+                $qrCodes[] = [
+                    'id' => $source->id,
+                    'code' => 'KODAMA-' . strtoupper($source->type) . '-' . $park->id . '-' . now()->format('Ymd'),
+                    'sound_source' => $source,
+                    'weather_condition' => $weatherCondition,
+                    'temperature_range' => $temperatureRange,
+                ];
+            }
+
+            $availableQrCodes[] = [
+                'park_id' => $park->id,
+                'park_name' => $park->name,
+                'qr_codes' => $qrCodes,
+            ];
+        }
+
+        // 各公園に天候データを追加
+        $parksWithWeather = $parks->map(function ($park) {
+            $weather = $park->weatherData->first();
+            return [
+                'id' => $park->id,
+                'name' => $park->name,
+                'description' => $park->description,
+                'latitude' => $park->latitude,
+                'longitude' => $park->longitude,
+                'weather' => $weather ? [
+                    'temperature' => $weather->temperature,
+                    'humidity' => $weather->humidity,
+                    'wind_speed' => $weather->wind_speed,
+                    'rain_level' => $weather->rain_level,
+                    'thunder' => $weather->thunder,
+                    'weather_condition' => $weather->weather_condition,
+                ] : null,
+            ];
+        });
 
         return Inertia::render('Kodama/Shop', [
-            'soundPacks' => $soundPacks,
+            'parks' => $parksWithWeather,
+            'availableQrCodes' => $availableQrCodes,
         ]);
+    }
+
+    private function getWeatherConditionForSound($category)
+    {
+        switch ($category) {
+            case 'japanese':
+                return 'clear'; // 和楽器は晴天時
+            case '80s_synth':
+                return 'any'; // シンセはいつでも
+            case 'nature':
+                return 'rainy'; // 自然音は雨天時
+            default:
+                return 'any';
+        }
+    }
+
+    private function getTemperatureRangeForSound($category)
+    {
+        switch ($category) {
+            case 'japanese':
+                return '15-30'; // 和楽器は温暖な時
+            case '80s_synth':
+                return 'any'; // シンセはいつでも
+            case 'nature':
+                return '10-25'; // 自然音は涼しい時
+            default:
+                return 'any';
+        }
     }
 
     public function player(Park $park)
