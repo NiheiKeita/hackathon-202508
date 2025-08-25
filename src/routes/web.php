@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Web\LoginController;
 use App\Http\Controllers\Web\PasswordController;
+use App\Http\Controllers\Web\KodamaController;
 use App\Http\Middleware\VerifyCsrfToken;
 
 /*
@@ -50,6 +51,17 @@ Route::group(['middleware' => 'basicauth'], function () {
         Route::get('admin/users/{id}', [UserController::class, 'edit'])->name('user.edit');
         Route::post('admin/users/{id}', [UserController::class, 'update'])->name('user.update');
     });
+
+    // KODAMA App Routes
+    Route::get('/', [KodamaController::class, 'index'])->name('kodama.home');
+    Route::get('/kodama', [KodamaController::class, 'index'])->name('web.top');
+    Route::get('/kodama/park/{park}', [KodamaController::class, 'park'])->name('kodama.park');
+    Route::get('/kodama/sound-sources', [KodamaController::class, 'soundSources'])->name('kodama.sound-sources');
+    Route::get('/kodama/shop', [KodamaController::class, 'shop'])->name('kodama.shop');
+    Route::get('/kodama/player/{park}', [KodamaController::class, 'player'])->name('kodama.player');
+
+    // Mock Pages
+    Route::get('/mock/music', [KodamaController::class, 'mockMusic'])->name('kodama.mock.music');
 
     // API
     Route::post('/api/upload', [ImageController::class, 'upload'])->withoutMiddleware(VerifyCsrfToken::class)->name('upload');

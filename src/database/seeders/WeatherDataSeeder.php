@@ -1,0 +1,223 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class WeatherDataSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $now = now();
+
+        DB::table('weather_data')->insert([
+            // === 代々木公園の天候データ ===
+            [
+                'id' => 1,
+                'park_id' => 1,
+                'temperature' => 24.50,
+                'humidity' => 65,
+                'wind_speed' => 2.30,
+                'rain_level' => 0.00,
+                'thunder' => false,
+                'weather_condition' => 'clear',
+                'recorded_at' => $now->copy()->subMinutes(30),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 2,
+                'park_id' => 1,
+                'temperature' => 23.80,
+                'humidity' => 72,
+                'wind_speed' => 1.80,
+                'rain_level' => 0.50,
+                'thunder' => false,
+                'weather_condition' => 'cloudy',
+                'recorded_at' => $now->copy()->subHours(2),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+
+            // === 新宿御苑の天候データ ===
+            [
+                'id' => 3,
+                'park_id' => 2,
+                'temperature' => 26.20,
+                'humidity' => 58,
+                'wind_speed' => 3.50,
+                'rain_level' => 0.00,
+                'thunder' => false,
+                'weather_condition' => 'clear',
+                'recorded_at' => $now->copy()->subMinutes(15),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 4,
+                'park_id' => 2,
+                'temperature' => 25.10,
+                'humidity' => 63,
+                'wind_speed' => 4.20,
+                'rain_level' => 2.30,
+                'thunder' => false,
+                'weather_condition' => 'rainy',
+                'recorded_at' => $now->copy()->subHour(),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+
+            // === 井の頭恩賜公園の天候データ ===
+            [
+                'id' => 5,
+                'park_id' => 3,
+                'temperature' => 22.30,
+                'humidity' => 78,
+                'wind_speed' => 1.20,
+                'rain_level' => 0.20,
+                'thunder' => false,
+                'weather_condition' => 'cloudy',
+                'recorded_at' => $now->copy()->subMinutes(45),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 6,
+                'park_id' => 3,
+                'temperature' => 21.80,
+                'humidity' => 85,
+                'wind_speed' => 0.90,
+                'rain_level' => 5.20,
+                'thunder' => true,
+                'weather_condition' => 'stormy',
+                'recorded_at' => $now->copy()->subHours(3),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+
+            // === 上野恩賜公園の天候データ ===
+            [
+                'id' => 7,
+                'park_id' => 4,
+                'temperature' => 27.10,
+                'humidity' => 52,
+                'wind_speed' => 2.80,
+                'rain_level' => 0.00,
+                'thunder' => false,
+                'weather_condition' => 'clear',
+                'recorded_at' => $now->copy()->subMinutes(10),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 8,
+                'park_id' => 4,
+                'temperature' => 26.50,
+                'humidity' => 55,
+                'wind_speed' => 3.10,
+                'rain_level' => 0.10,
+                'thunder' => false,
+                'weather_condition' => 'cloudy',
+                'recorded_at' => $now->copy()->subMinutes(90),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+
+            // === 過去24時間のデータサンプル（代々木公園） ===
+            [
+                'id' => 9,
+                'park_id' => 1,
+                'temperature' => 18.50,
+                'humidity' => 80,
+                'wind_speed' => 1.10,
+                'rain_level' => 3.20,
+                'thunder' => false,
+                'weather_condition' => 'rainy',
+                'recorded_at' => $now->copy()->subHours(6),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 10,
+                'park_id' => 1,
+                'temperature' => 16.20,
+                'humidity' => 88,
+                'wind_speed' => 0.80,
+                'rain_level' => 7.80,
+                'thunder' => true,
+                'weather_condition' => 'stormy',
+                'recorded_at' => $now->copy()->subHours(12),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 11,
+                'park_id' => 1,
+                'temperature' => 20.10,
+                'humidity' => 75,
+                'wind_speed' => 1.50,
+                'rain_level' => 1.20,
+                'thunder' => false,
+                'weather_condition' => 'cloudy',
+                'recorded_at' => $now->copy()->subHours(18),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 12,
+                'park_id' => 1,
+                'temperature' => 22.80,
+                'humidity' => 68,
+                'wind_speed' => 2.10,
+                'rain_level' => 0.00,
+                'thunder' => false,
+                'weather_condition' => 'clear',
+                'recorded_at' => $now->copy()->subHours(24),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+
+            // === 季節変化データサンプル（新宿御苑） ===
+            [
+                'id' => 13,
+                'park_id' => 2,
+                'temperature' => 28.50,
+                'humidity' => 45,
+                'wind_speed' => 4.50,
+                'rain_level' => 0.00,
+                'thunder' => false,
+                'weather_condition' => 'clear',
+                'recorded_at' => $now->copy()->subDays(1),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 14,
+                'park_id' => 2,
+                'temperature' => 31.20,
+                'humidity' => 38,
+                'wind_speed' => 5.20,
+                'rain_level' => 0.00,
+                'thunder' => false,
+                'weather_condition' => 'clear',
+                'recorded_at' => $now->copy()->subDays(7),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 15,
+                'park_id' => 2,
+                'temperature' => 14.30,
+                'humidity' => 92,
+                'wind_speed' => 6.80,
+                'rain_level' => 12.50,
+                'thunder' => true,
+                'weather_condition' => 'stormy',
+                'recorded_at' => $now->copy()->subDays(30),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+        ]);
+    }
+}

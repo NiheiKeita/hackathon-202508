@@ -56,10 +56,10 @@
             "@php artisan key:generate --ansi"
         ],
         "phpcs": [
-          "./vendor/bin/phpcs --standard=phpcs.xml"
+          "./vendor/bin/phpcs --standard=phpcs.xml ."
         ],
         "phpcs-fix": [
-            "./vendor/bin/phpcbf --standard=phpcs.xml"
+            "./vendor/bin/phpcbf --standard=phpcs.xml ."
         ]
     },
 
