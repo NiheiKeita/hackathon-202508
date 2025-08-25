@@ -23,12 +23,12 @@ class SoundSeedController extends Controller
         // ユーザーが音源にアクセス権限があるかチェック
         $user = $request->user();
         $soundSource = \App\Models\SoundSource::find($validated['sound_source_id']);
-        
+
         if (!$soundSource->is_free) {
             $hasPurchased = \App\Models\PurchasedSoundSource::where('user_id', $user->id)
                 ->where('sound_source_id', $soundSource->id)
                 ->exists();
-            
+
             if (!$hasPurchased) {
                 throw ValidationException::withMessages([
                     'sound_source_id' => 'この音源は購入が必要です。'
@@ -53,7 +53,7 @@ class SoundSeedController extends Controller
     public function destroy(Request $request, SoundSeed $soundSeed): JsonResponse
     {
         $user = $request->user();
-        
+
         if ($soundSeed->user_id !== $user->id) {
             return response()->json(['message' => '削除権限がありません'], 403);
         }
@@ -66,7 +66,7 @@ class SoundSeedController extends Controller
     public function update(Request $request, SoundSeed $soundSeed): JsonResponse
     {
         $user = $request->user();
-        
+
         if ($soundSeed->user_id !== $user->id) {
             return response()->json(['message' => '編集権限がありません'], 403);
         }

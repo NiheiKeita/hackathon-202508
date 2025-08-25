@@ -57,10 +57,10 @@ class KodamaController extends Controller
     public function soundSources(Request $request)
     {
         $user = $request->user();
-        
+
         // 無料音源
         $freeSounds = SoundSource::where('is_free', true)->get();
-        
+
         // 購入済み音源
         $purchasedSounds = [];
         if ($user) {
@@ -85,18 +85,18 @@ class KodamaController extends Controller
 
         // 各公園の天候・気温に応じたQRコードを生成
         $availableQrCodes = [];
-        
+
         foreach ($parks as $park) {
             $weather = $park->weatherData->first();
             $qrCodes = [];
 
             // 各音源の天候・温度条件を設定
             $soundSources = SoundSource::where('is_free', false)->get();
-            
+
             foreach ($soundSources as $source) {
                 $weatherCondition = $this->getWeatherConditionForSound($source->category);
                 $temperatureRange = $this->getTemperatureRangeForSound($source->category);
-                
+
                 $qrCodes[] = [
                     'id' => $source->id,
                     'code' => 'KODAMA-' . strtoupper($source->type) . '-' . $park->id . '-' . now()->format('Ymd'),

@@ -45,7 +45,7 @@ class WeatherData extends Model
         } elseif ($this->rain_level > 0) {
             return 0.8; // 小雨 -> Lento
         }
-        
+
         return 1.0; // 晴れ -> Normal
     }
 

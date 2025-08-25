@@ -4,14 +4,13 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class WeatherDataSeeder extends Seeder
 {
     public function run(): void
     {
         $now = now();
-        
+
         DB::table('weather_data')->insert([
             // === 代々木公園の天候データ ===
             [

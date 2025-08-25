@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('qr_code')->nullable();
             $table->timestamp('purchased_at');
             $table->timestamps();
-            
+
             // 重複購入を防ぐ
             $table->unique(['user_id', 'sound_source_id']);
         });

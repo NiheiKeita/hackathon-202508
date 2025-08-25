@@ -59,7 +59,7 @@ Route::group(['middleware' => 'basicauth'], function () {
     Route::get('/kodama/sound-sources', [KodamaController::class, 'soundSources'])->name('kodama.sound-sources');
     Route::get('/kodama/shop', [KodamaController::class, 'shop'])->name('kodama.shop');
     Route::get('/kodama/player/{park}', [KodamaController::class, 'player'])->name('kodama.player');
-    
+
     // Mock Pages
     Route::get('/mock/music', [KodamaController::class, 'mockMusic'])->name('kodama.mock.music');
 

@@ -33,7 +33,7 @@ Route::prefix('kodama')->group(function () {
     Route::get('/sound-sources/{soundSource}', [SoundSourceController::class, 'show']);
     Route::get('/parks/{park}/weather', [WeatherController::class, 'getCurrentWeather']);
     Route::get('/parks/{park}/weather/history', [WeatherController::class, 'getWeatherHistory']);
-    
+
     // QRコードスキャン（認証不要）
     Route::post('/qr-codes/scan', [QrCodeController::class, 'scan']);
 
@@ -43,14 +43,14 @@ Route::prefix('kodama')->group(function () {
         Route::post('/sound-seeds', [SoundSeedController::class, 'store']);
         Route::put('/sound-seeds/{soundSeed}', [SoundSeedController::class, 'update']);
         Route::delete('/sound-seeds/{soundSeed}', [SoundSeedController::class, 'destroy']);
-        
+
         // ユーザー音源取得
         Route::get('/user/sound-sources', [SoundSourceController::class, 'getUserSoundSources']);
-        
+
         // QRコード購入
         Route::post('/qr-codes/purchase', [QrCodeController::class, 'purchase']);
         Route::post('/sound-sources/purchase-set', [QrCodeController::class, 'purchaseSet']);
-        
+
         // 天候データ更新（管理者用）
         Route::post('/parks/{park}/weather', [WeatherController::class, 'updateWeather']);
     });

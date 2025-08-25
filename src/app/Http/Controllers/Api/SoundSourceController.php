@@ -33,10 +33,10 @@ class SoundSourceController extends Controller
     public function getUserSoundSources(Request $request): JsonResponse
     {
         $user = $request->user();
-        
+
         // 無料音源
         $freeSounds = SoundSource::where('is_free', true)->get();
-        
+
         // 購入済み音源
         $purchasedSounds = SoundSource::whereHas('purchasedSoundSources', function ($query) use ($user) {
             $query->where('user_id', $user->id);
